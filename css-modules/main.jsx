@@ -61,7 +61,7 @@ class Main extends Component {
         let titles = [];
 
         for(let i = 0; i <= 1000; i++){
-            titles.push(<StyledTitle key={i} count={this.props.count}/>);
+            titles.push(<StyledTitle key={i} count={this.props.count + i}/>);
         }
 
         return (
