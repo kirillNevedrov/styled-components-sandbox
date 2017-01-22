@@ -51,3 +51,5 @@ ReactDOM.render(
     <Main/>,
     document.getElementById('root')
 );
+
+//https://github.com/cssinjs/react-jss/issues/64

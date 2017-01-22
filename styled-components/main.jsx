@@ -24,12 +24,6 @@ const store = createStore(
     applyMiddleware(thunk)
 );
 
-const Title = styled.h1`
-          font-size: 1.5em;
-          text-align: center;
-          color: palevioletred;
-        `;
-
 const INCREMENT_COUNTER = 'INCREMENT';
 
 function increment() {
@@ -40,25 +34,54 @@ function increment() {
 
 const incIfOdd = () => {
     return (dispatch, getState) => {
-        const { counter } = getState();
+        // const { counter } = getState();
+        //
+        // if (counter % 2 === 0) {
+        //     return;
+        // }
 
-        if (counter % 2 === 0) {
-            return;
-        }
-
-        dispatch(increment());
+        setInterval(() => {
+            dispatch(increment());
+        });
     };
+}
+
+class StyledTitle extends Component {
+    render(){
+        let fontSize = this.props.count % 2 === 0
+            ? '1em'
+            : '2em';
+
+        const Title = styled.h1`
+          font-size: ${fontSize};
+          text-align: center;
+          color: palevioletred;
+        `;
+
+        return <Title>Styled Components Initial {this.props.count}</Title>;
+    }
 }
 
 class Main extends Component {
     render() {
+        let titles = [];
+
+        for(let i = 0; i <= 1000; i++){
+            titles.push(<StyledTitle key={i} count={this.props.count}/>);
+        }
+
         return (
             <div>
-                <Title>Styled Components Initial {this.props.count}</Title>
                 <button onClick={this.props.incrementIfOdd}>Increment</button>
+                {titles}
             </div>
         );
     }
+
+    componentDidUpdate(prevProps, prevState, prevContext) {
+        console.log(`updated ${this.props.count} ${new Date()}`);
+    }
+
 }
 
 const mapStateToProps = (state) => {
