@@ -8,7 +8,7 @@ module.exports = {
     cache: true,
     debug: true,
     entry: {
-        'main': './main.es6'
+        'main': './main.jsx'
     },
     output: {
         path: './build',

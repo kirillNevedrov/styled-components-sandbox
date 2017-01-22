@@ -17,6 +17,11 @@
     "url": "https://github.com/kirillNevedrov/styled-components-sandbox/issues"
   },
   "homepage": "https://github.com/kirillNevedrov/styled-components-sandbox#readme",
+  "dependencies": {
+    "react": "^15.1.0",
+    "react-dom": "^15.1.0",
+    "styled-components": "^1.3.1"
+  },
   "devDependencies": {
     "webpack": "1.13.0",
     "webpack-dev-server": "^1.16.1",
