@@ -4,6 +4,25 @@ import React, {
 } from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
+import { createStore, applyMiddleware } from 'redux';
+import {Provider, connect} from 'react-redux';
+import thunk from 'redux-thunk';
+
+const rootReducer = (state = 0, action) => {
+    switch (action.type) {
+        case 'INCREMENT':
+            return state + 1
+        case 'DECREMENT':
+            return state - 1
+        default:
+            return state
+    }
+};
+
+const store = createStore(
+    rootReducer,
+    applyMiddleware(thunk)
+);
 
 const Title = styled.h1`
           font-size: 1.5em;
@@ -11,18 +30,59 @@ const Title = styled.h1`
           color: palevioletred;
         `;
 
+const INCREMENT_COUNTER = 'INCREMENT';
+
+function increment() {
+    return {
+        type: INCREMENT_COUNTER
+    };
+}
+
+const incIfOdd = () => {
+    return (dispatch, getState) => {
+        const { counter } = getState();
+
+        if (counter % 2 === 0) {
+            return;
+        }
+
+        dispatch(increment());
+    };
+}
+
 class Main extends Component {
     render() {
         return (
-            <Title>Styled Components Initial</Title>
+            <div>
+                <Title>Styled Components Initial {this.props.count}</Title>
+                <button onClick={this.props.incrementIfOdd}>Increment</button>
+            </div>
         );
     }
 }
 
-Main.propTypes = {};
-Main.defaultProps = {};
+const mapStateToProps = (state) => {
+    return {
+        count: state
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        incrementIfOdd: () => {
+            dispatch(incIfOdd());
+        }
+    };
+};
+
+const MainContainer = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Main);
 
 ReactDOM.render(
-    <Main/>,
+    <Provider store={store}>
+        <MainContainer/>
+    </Provider>,
     document.getElementById('root')
 );
