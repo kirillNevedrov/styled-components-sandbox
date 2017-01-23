@@ -3,7 +3,7 @@ import React, {
     PropTypes,
 } from 'react';
 import ReactDOM from 'react-dom';
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
 import { createStore, applyMiddleware } from 'redux';
 import {Provider, connect} from 'react-redux';
 import thunk from 'redux-thunk';
@@ -18,6 +18,11 @@ const rootReducer = (state = 0, action) => {
             return state
     }
 };
+
+const shared = css`
+    text-align: center;
+    color: palevioletred;
+`;
 
 const store = createStore(
     rootReducer,
@@ -53,9 +58,8 @@ class StyledTitle extends Component {
             : '2em';
 
         const Title = styled.h1`
-          font-size: ${fontSize};
-          text-align: center;
-          color: palevioletred;
+            ${shared}
+            font-size: ${fontSize};         
         `;
 
         return <Title>Styled Components Initial {this.props.count}</Title>;
@@ -109,3 +113,5 @@ ReactDOM.render(
     </Provider>,
     document.getElementById('root')
 );
+
+//https://github.com/styled-components/styled-components/issues/134
