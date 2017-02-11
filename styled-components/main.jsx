@@ -62,15 +62,7 @@ class StyledTitle extends Component {
             font-size: ${fontSize};         
         `;
 
-        const Reset = styled(Title)`
-            line-height: 16px;      
-            
-            .test-nesting{
-                width: 100px;
-            }
-        `;
-
-        return <Reset>Styled Components Initial {this.props.count}</Reset>;
+        return <Title>Styled Components Initial {this.props.count}</Title>;
     }
 }
 
