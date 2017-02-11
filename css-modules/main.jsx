@@ -60,7 +60,7 @@ class Main extends Component {
     render() {
         let titles = [];
 
-        for(let i = 0; i <= 1000; i++){
+        for(let i = 0; i <= 10000; i++){
             titles.push(<StyledTitle key={i} count={this.props.count + i}/>);
         }
 
@@ -76,6 +76,13 @@ class Main extends Component {
         console.log(`updated ${this.props.count} ${new Date()}`);
     }
 
+    componentWillMount() {
+        console.log(`will mount ${new Date()}`);
+    }
+
+    componentDidMount() {
+        console.log(`did mount ${new Date()}`);
+    }
 }
 
 const mapStateToProps = (state) => {
