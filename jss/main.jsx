@@ -107,19 +107,20 @@ const incIfOdd = () => {
     };
 }
 
-let H = XXH.h32( 0xABCD ) ;  // seed = 0xABCD
+//let H = XXH.h32( 0xABCD ) ;  // seed = 0xABCD
 let cache = {};
+//https://github.com/puleos/object-hash
 
 class StyledTitle extends Component {
     getStyles(input){
         let inputString = input.toString();
 
-        var h = H.update( inputString ).digest().toString(16);
+        //var h = H.update( inputString ).digest().toString(16);
 
-        let cachedStyles = cache[h];
+        let cachedStyles = cache[inputString];
 
-        if(cachedStyles && cachedStyles.input === inputString){
-            return cachedStyles.output;
+        if(cachedStyles){
+            return cachedStyles;
         }
         else{
             let isSmall = input === 0;
@@ -134,10 +135,7 @@ class StyledTitle extends Component {
 
             let dynamicStyles = jss.createStyleSheet(styles).attach();
 
-            cache[h] = {
-                input: inputString,
-                output: dynamicStyles
-            };//TODO: add counter of style usage and remove style on componentwillunmount if it is not used anymore
+            cache[inputString] = dynamicStyles;//TODO: add counter of style usage and remove style on componentwillunmount if it is not used anymore
 
             return dynamicStyles;
         }
