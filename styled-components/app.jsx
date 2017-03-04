@@ -3,7 +3,7 @@ import React, {
     PropTypes,
 } from 'react';
 import ReactDOM from 'react-dom';
-import { createStore, applyMiddleware } from 'redux';
+import {createStore, applyMiddleware} from 'redux';
 import {Provider, connect} from 'react-redux';
 import thunk from 'redux-thunk';
 
@@ -41,7 +41,7 @@ class Main extends Component {
     render() {
         let titles = [];
 
-        for(let i = 0; i <= 10000; i++){
+        for (let i = 0; i <= 100; i++) {
             titles.push(this.props.getStyledTitle({key: i, count: this.props.count + i}));
         }
 

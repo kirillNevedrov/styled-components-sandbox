@@ -14,12 +14,23 @@ class StyledTitle extends Component {
     }
 }
 
+// import start from './app.jsx';
+// start({
+//     getStyledTitle: (settings) => {
+//         return (
+//             <StyledTitle key={settings.key} count={settings.count}/>
+//         );
+//     }
+// });
+
 import start from './app.jsx';
 start({
     getStyledTitle: (settings) => {
+        let isSmall = (settings.count % 2) === 0;
+        let className = classNames(styles.title, {[styles.small]: isSmall, [styles.big]: !isSmall});
+
         return (
-            <StyledTitle key={settings.key} count={settings.count}/>
+            <div className={className}>Styled Components Initial {settings.count}</div>
         );
     }
 });
-

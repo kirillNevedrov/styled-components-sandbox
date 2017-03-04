@@ -1,14 +1,33 @@
-:local{
-  .title{
-    text-align: center;
-    color: palevioletred;
+:local {
+  //.title{
+  //  text-align: center;
+  //  color: palevioletred;
+  //
+  //  &.small{
+  //    font-size: 1em;
+  //  }
+  //
+  //  &.big{
+  //    font-size: 2em;
+  //  }
+  //}
+  .title {
+    background-color: blue;
+    display: block;
+    margin: 20px;
 
-    &.small{
-      font-size: 1em;
+    &.small {
+      width: 300px;
+      &:hover {
+        width: 150px;
+      }
     }
 
-    &.big{
-      font-size: 2em;
+    &.big {
+      width: 600px;
+      &:hover {
+        width: 300px;
+      }
     }
   }
 }
